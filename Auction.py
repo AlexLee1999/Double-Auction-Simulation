@@ -17,7 +17,7 @@ def Generate_task():
     return macro_lst, micro_lst, total
 
 
-def Proposed(macro_lst, micro_lst, total):
+def Proposed(macro_lst, micro_lst, total, macrot, microt):
     macro_lst = macro_lst.copy()
     micro_lst = micro_lst.copy()
     total = total.copy()
@@ -35,7 +35,7 @@ def Proposed(macro_lst, micro_lst, total):
     return winning_macro, winning_micro
 
 
-def Greedy(macro_lst, micro_lst, total):
+def Greedy(macro_lst, micro_lst, total, macrot, microt):
     winning_macro = []
     winning_micro = []
     macro_lst = macro_lst.copy()
@@ -55,7 +55,7 @@ def Greedy(macro_lst, micro_lst, total):
     return winning_macro, winning_micro
 
 
-def FIFO(macro_lst, micro_lst, total):
+def FIFO(macro_lst, micro_lst, total, macrot, microt):
     winning_macro = []
     winning_micro = []
     macro_lst = macro_lst.copy()

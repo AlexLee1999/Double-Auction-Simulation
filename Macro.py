@@ -7,7 +7,7 @@ class macro():
         self._ismacro = 1
         seedValue = random.randrange(sys.maxsize)
         random.seed(seedValue)
-        self._time = random.randint(1, 100)
+        self._time = random.randint(1, 200)
 
     @property
     def time(self):
