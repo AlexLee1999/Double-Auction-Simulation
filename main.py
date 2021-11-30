@@ -12,13 +12,11 @@ if __name__ == "__main__":
     sum_FIFO = 0
     for j in range(ITER):
         macro_lst, micro_lst, total = Generate_task()
-        winning_FIFO_macro = []
-        winning_FIFO_micro = []
+        winning_FIFO_macro, winning_FIFO_micro = FIFO(macro_lst, micro_lst, total)
         macro_lst.sort(reverse=True)
         micro_lst.sort(reverse=True)
         total.sort(reverse=True)
         winning_greedy_macro, winning_greedy_micro = Greedy(macro_lst, micro_lst, total)
-
         winning_macro, winning_micro = Proposed(macro_lst, micro_lst, total)
         sum_FIFO += len(winning_FIFO_macro)
         sum_FIFO += len(winning_FIFO_micro)
