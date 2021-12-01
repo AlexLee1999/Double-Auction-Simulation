@@ -24,12 +24,12 @@ def Proposed(macro_lst, micro_lst, total, macrot, microt):
     winning_macro = []
     winning_micro = []
     for i in range(len(micro_lst)):
-        b = (len(winning_micro)+1) * microt
+        b = (len(winning_micro)+1) * microt + time_to_micro
         if b <= micro_lst[i].time:
             winning_micro.append(micro_lst[i])
             total.remove(micro_lst[i])
     for i in range(len(total)):
-        a = (len(winning_macro)+1) * macrot
+        a = (len(winning_macro)+1) * macrot + time_to_macro
         if a <= total[i].time:
             winning_macro.append(total[i])
     return winning_macro, winning_micro
@@ -42,8 +42,8 @@ def Greedy(macro_lst, micro_lst, total, macrot, microt):
     micro_lst = micro_lst.copy()
     total = total.copy()
     for i in range(len(total)):
-        a = (len(winning_macro)+1)*macrot
-        b = (len(winning_micro)+1)*microt
+        a = (len(winning_macro)+1)*macrot + time_to_macro
+        b = (len(winning_micro)+1)*microt + time_to_micro
         if (total[i].ismacro == 0):
             if a < b and a <= total[i].time:
                 winning_macro.append(total[i])
@@ -62,7 +62,7 @@ def FIFO(macro_lst, micro_lst, total, macrot, microt):
     micro_lst = micro_lst.copy()
     total = total.copy()
     for i in range(len(micro_lst)):
-        b = (len(winning_micro)+1) * microt
+        b = (len(winning_micro)+1) * microt + time_to_micro
         flag_current = False
         if b <= micro_lst[i].time:
             flag_current = True
@@ -74,7 +74,7 @@ def FIFO(macro_lst, micro_lst, total, macrot, microt):
             winning_micro.append(micro_lst[i])
             total.remove(micro_lst[i])
     for i in range(len(total)):
-        a = (len(winning_macro)+1) * macrot
+        a = (len(winning_macro)+1) * macrot + time_to_macro
         flag_current = False
         if a <= total[i].time:
             flag_current = True
@@ -84,4 +84,21 @@ def FIFO(macro_lst, micro_lst, total, macrot, microt):
                 flag_lst = False
         if flag_current and flag_lst:
             winning_macro.append(total[i])
+    return winning_macro, winning_micro
+
+def Macro_first(macro_lst, micro_lst, total, macrot, microt):
+    macro_lst = macro_lst.copy()
+    micro_lst = micro_lst.copy()
+    total = total.copy()
+    winning_macro = []
+    winning_micro = []
+    for i in range(len(macro_lst)):
+        b = (len(winning_macro)+1) * macrot + time_to_macro
+        if b <= macro_lst[i].time:
+            winning_macro.append(macro_lst[i])
+            total.remove(macro_lst[i])
+    for i in range(len(micro_lst)):
+        a = (len(winning_micro)+1) * microt + time_to_micro
+        if a <= micro_lst[i].time:
+            winning_micro.append(micro_lst[i])
     return winning_macro, winning_micro
