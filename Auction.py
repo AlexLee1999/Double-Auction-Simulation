@@ -1,114 +1,116 @@
 from Const import *
-from Macro import *
-from Micro import *
+from Macro_Cell import *
+from Small_Cell import *
 
 
 def Generate_task():
-    macro_lst = []
-    micro_lst = []
+    macro_cell_lst = []
+    small_cell_lst = []
     total = []
-    for _ in range(10):
-        a = macro()
-        b = micro()
-        macro_lst.append(a)
-        micro_lst.append(b)
+    for _ in range(30):
+        a = macro_cell()
+        b = small_cell()
+        macro_cell_lst.append(a)
+        small_cell_lst.append(b)
         total.append(a)
         total.append(b)
-    return macro_lst, micro_lst, total
+    return macro_cell_lst, small_cell_lst, total
 
 
-def Proposed(macro_lst, micro_lst, total, macrot, microt):
-    macro_lst = macro_lst.copy()
-    micro_lst = micro_lst.copy()
+def Proposed(macro_cell_lst, small_cell_lst, total, macro_cellt, small_cellt):
+    macro_cell_lst = macro_cell_lst.copy()
+    small_cell_lst = small_cell_lst.copy()
     total = total.copy()
-    winning_macro = []
-    winning_micro = []
-    for i in range(len(micro_lst)):
-        b = (len(winning_micro)+1) * microt + time_to_micro
-        if b <= micro_lst[i].time:
-            winning_micro.append(micro_lst[i])
-            total.remove(micro_lst[i])
+    winning_macro_cell = []
+    winning_small_cell = []
+    for i in range(len(small_cell_lst)):
+        b = (len(winning_small_cell) + 1) * small_cellt + time_to_small_cell
+        if b <= small_cell_lst[i].time:
+            winning_small_cell.append(small_cell_lst[i])
+            total.remove(small_cell_lst[i])
     for i in range(len(total)):
-        a = (len(winning_macro)+1) * macrot + time_to_macro
+        a = (len(winning_macro_cell) + 1) * macro_cellt + time_to_macro_cell
         if a <= total[i].time:
-            winning_macro.append(total[i])
-    return winning_macro, winning_micro
+            winning_macro_cell.append(total[i])
+    return winning_macro_cell, winning_small_cell
 
 
-def Greedy(macro_lst, micro_lst, total, macrot, microt):
-    winning_macro = []
-    winning_micro = []
-    macro_lst = macro_lst.copy()
-    micro_lst = micro_lst.copy()
+def Greedy(macro_cell_lst, small_cell_lst, total, macro_cellt, small_cellt):
+    winning_macro_cell = []
+    winning_small_cell = []
+    macro_cell_lst = macro_cell_lst.copy()
+    small_cell_lst = small_cell_lst.copy()
     total = total.copy()
     for i in range(len(total)):
-        a = (len(winning_macro)+1)*macrot + time_to_macro
-        b = (len(winning_micro)+1)*microt + time_to_micro
-        if (total[i].ismacro == 0):
+        a = (len(winning_macro_cell) + 1) * macro_cellt + time_to_macro_cell
+        b = (len(winning_small_cell) + 1) * small_cellt + time_to_small_cell
+        if total[i].is_macro_cell == 0:
             if a < b and a <= total[i].time:
-                winning_macro.append(total[i])
+                winning_macro_cell.append(total[i])
             elif a >= b and b <= total[i].time:
-                winning_micro.append(total[i])
+                winning_small_cell.append(total[i])
         else:
             if a <= total[i].time:
-                winning_macro.append(total[i])
-    return winning_macro, winning_micro
+                winning_macro_cell.append(total[i])
+    return winning_macro_cell, winning_small_cell
 
 
-def FIFO(macro_lst, micro_lst, total, macrot, microt):
-    winning_macro = []
-    winning_micro = []
-    macro_lst = macro_lst.copy()
-    micro_lst = micro_lst.copy()
+def FIFO(macro_cell_lst, small_cell_lst, total, macro_cellt, small_cellt):
+    winning_macro_cell = []
+    winning_small_cell = []
+    macro_cell_lst = macro_cell_lst.copy()
+    small_cell_lst = small_cell_lst.copy()
     total = total.copy()
-    for i in range(len(micro_lst)):
-        b = (len(winning_micro)+1) * microt + time_to_micro
+    for i in range(len(small_cell_lst)):
+        b = (len(winning_small_cell) + 1) * small_cellt + time_to_small_cell
         flag_current = False
-        if b <= micro_lst[i].time:
+        if b <= small_cell_lst[i].time:
             flag_current = True
         flag_lst = True
-        for task in winning_micro:
+        for task in winning_small_cell:
             if task.time < b:
                 flag_lst = False
         if flag_current and flag_lst:
-            winning_micro.append(micro_lst[i])
-            total.remove(micro_lst[i])
+            winning_small_cell.append(small_cell_lst[i])
+            total.remove(small_cell_lst[i])
     for i in range(len(total)):
-        a = (len(winning_macro)+1) * macrot + time_to_macro
+        a = (len(winning_macro_cell) + 1) * macro_cellt + time_to_macro_cell
         flag_current = False
         if a <= total[i].time:
             flag_current = True
         flag_lst = True
-        for task in winning_macro:
+        for task in winning_macro_cell:
             if task.time < a:
                 flag_lst = False
         if flag_current and flag_lst:
-            winning_macro.append(total[i])
-    return winning_macro, winning_micro
+            winning_macro_cell.append(total[i])
+    return winning_macro_cell, winning_small_cell
 
-def Macro_first(macro_lst, micro_lst, total, macrot, microt):
-    macro_lst = macro_lst.copy()
-    micro_lst = micro_lst.copy()
-    total = total.copy()
-    winning_macro = []
-    winning_micro = []
-    for i in range(len(macro_lst)):
-        b = (len(winning_macro)+1) * macrot + time_to_macro
-        if b <= macro_lst[i].time:
-            winning_macro.append(macro_lst[i])
-            total.remove(macro_lst[i])
-    for i in range(len(micro_lst)):
-        a = (len(winning_micro)+1) * microt + time_to_micro
-        if a <= micro_lst[i].time:
-            winning_micro.append(micro_lst[i])
-    return winning_macro, winning_micro
 
-def No_Micro(macro_lst, micro_lst, total, macrot, microt):
-    macro_lst = macro_lst.copy()
+def macro_cell_first(macro_cell_lst, small_cell_lst, total, macro_cellt, small_cellt):
+    macro_cell_lst = macro_cell_lst.copy()
+    small_cell_lst = small_cell_lst.copy()
     total = total.copy()
-    winning_macro = []
+    winning_macro_cell = []
+    winning_small_cell = []
+    for i in range(len(macro_cell_lst)):
+        b = (len(winning_macro_cell) + 1) * macro_cellt + time_to_macro_cell
+        if b <= macro_cell_lst[i].time:
+            winning_macro_cell.append(macro_cell_lst[i])
+            total.remove(macro_cell_lst[i])
+    for i in range(len(small_cell_lst)):
+        a = (len(winning_small_cell) + 1) * small_cellt + time_to_small_cell
+        if a <= small_cell_lst[i].time:
+            winning_small_cell.append(small_cell_lst[i])
+    return winning_macro_cell, winning_small_cell
+
+
+def No_small_cell(macro_cell_lst, small_cell_lst, total, macro_cellt, small_cellt):
+    macro_cell_lst = macro_cell_lst.copy()
+    total = total.copy()
+    winning_macro_cell = []
     for i in range(len(total)):
-        b = (len(winning_macro)+1) * macrot + time_to_macro
+        b = (len(winning_macro_cell) + 1) * macro_cellt + time_to_macro_cell
         if b <= total[i].time:
-            winning_macro.append(total[i])
-    return winning_macro
+            winning_macro_cell.append(total[i])
+    return winning_macro_cell
