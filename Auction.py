@@ -102,3 +102,13 @@ def Macro_first(macro_lst, micro_lst, total, macrot, microt):
         if a <= micro_lst[i].time:
             winning_micro.append(micro_lst[i])
     return winning_macro, winning_micro
+
+def No_Micro(macro_lst, micro_lst, total, macrot, microt):
+    macro_lst = macro_lst.copy()
+    total = total.copy()
+    winning_macro = []
+    for i in range(len(total)):
+        b = (len(winning_macro)+1) * macrot + time_to_macro
+        if b <= total[i].time:
+            winning_macro.append(total[i])
+    return winning_macro

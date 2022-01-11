@@ -11,11 +11,13 @@ if __name__ == "__main__":
     tasks_proposed = []
     tasks_FIFO = []
     tasks_macro_first = []
+    tasks_no_micro = []
     for par in parameters:
         sum_greedy = 0
         sum_proposed = 0
         sum_FIFO = 0
         sum_macro_first = 0
+        sum_no_micro = 0
         for j in range(ITER):
             macro_lst, micro_lst, total = Generate_task()
             winning_FIFO_macro, winning_FIFO_micro = FIFO(macro_lst, micro_lst, total, par[0], par[1])
@@ -24,6 +26,7 @@ if __name__ == "__main__":
             total.sort(reverse=True)
             winning_macro_first_macro, winning_macro_first_micro = Macro_first(macro_lst, micro_lst, total, par[0], par[1])
             winning_greedy_macro, winning_greedy_micro = Greedy(macro_lst, micro_lst, total, par[0], par[1])
+            winning_No_Micro_macro = No_Micro(macro_lst, micro_lst, total, par[0], par[1])
             winning_macro, winning_micro = Proposed(macro_lst, micro_lst, total, par[0], par[1])
             sum_FIFO += len(winning_FIFO_macro)
             sum_FIFO += len(winning_FIFO_micro)
@@ -33,6 +36,7 @@ if __name__ == "__main__":
             sum_proposed += len(winning_micro)
             sum_macro_first += len(winning_macro_first_macro)
             sum_macro_first += len(winning_macro_first_micro)
+            sum_no_micro += len(winning_No_Micro_macro)
             if j == 0:
                 print('################################################################')
                 print('First time Generated Tasks')
@@ -50,6 +54,8 @@ if __name__ == "__main__":
                 print(f"Macro First : {len(winning_macro_first_macro)+len(winning_macro_first_micro)}")
                 print(winning_macro_first_micro)
                 print(winning_macro_first_macro)
+                print(f"No Micro : {len(winning_No_Micro_macro)}")
+                print(winning_No_Micro_macro)
                 print('################################################################')
         print(f'Avg of task being allocate by FIFO : {sum_FIFO/ITER}')
         tasks_FIFO.append(sum_FIFO/ITER)
@@ -59,10 +65,13 @@ if __name__ == "__main__":
         tasks_greedy.append(sum_greedy/ITER)
         print(f'Avg of task being allocate by Macro First algorithm : {sum_macro_first/ITER}')
         tasks_macro_first.append(sum_macro_first/ITER)
+        print(f'Avg of task being allocate by No Micro algorithm : {sum_no_micro/ITER}')
+        tasks_no_micro.append(sum_no_micro/ITER)
     plt.figure()
+    plt.plot(parameter, tasks_proposed, marker='8', markerfacecolor='none', label='Proposed')
     plt.plot(parameter, tasks_FIFO, marker='o', markerfacecolor='none', label='FIFO')
     plt.plot(parameter, tasks_greedy, marker='^', markerfacecolor='none', label='Greedy')
-    plt.plot(parameter, tasks_proposed, marker='8', markerfacecolor='none', label='Proposed')
     plt.plot(parameter, tasks_macro_first, marker='p', markerfacecolor='none', label='Macro First')
+    plt.plot(parameter, tasks_no_micro, marker='>', markerfacecolor='none', label='No Micro')
     plt.legend(loc="best")
     plt.show()
