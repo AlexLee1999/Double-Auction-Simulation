@@ -2,7 +2,7 @@ import random
 import sys
 
 
-class macro_cell():
+class macro_cell_user():
     def __init__(self):
         self._is_macro_cell = 1
         seedValue = random.randrange(sys.maxsize)

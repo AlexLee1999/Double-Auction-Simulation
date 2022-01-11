@@ -5,9 +5,14 @@ from Auction import *
 import matplotlib.pyplot as plt
 
 DEBUG = 0
+PROPOSED = 1
+FIFO = 1
+GREEDY = 1
+MACRO_FIRST = 1
+NO_SMALL = 1
 if __name__ == "__main__":
-    parameters = [[1e6, 1e6], [3e6, 3e6], [5e6, 5e6]]
-    parameter = ["[1Mcycles, 1Mcycles]", "[3Mcycles, 3Mcycles]", "[5Mcycles, 5Mcycles]"]
+    parameters = [[1e6, 1e6], [2e6, 2e6], [3e6, 3e6], [4e6, 4e6], [5e6, 5e6]]
+    parameter = ["1Mcycles", "2Mcycles", "3Mcycles", "4Mcycles", "5Mcycles"]
     tasks_greedy = []
     tasks_proposed = []
     tasks_FIFO = []
@@ -21,56 +26,65 @@ if __name__ == "__main__":
         sum_no_small_cell = 0
         for j in range(ITER):
             macro_cell_lst, small_cell_lst, total = Generate_task()
-            winning_FIFO_macro_cell, winning_FIFO_small_cell = FIFO(
-                macro_cell_lst,
-                small_cell_lst,
-                total,
-                par[0] / macro_CPU_freq,
-                par[1] / small_CPU_freq,
-            )
+            if FIFO:
+                winning_FIFO_macro_cell, winning_FIFO_small_cell = Fifo(
+                    macro_cell_lst,
+                    small_cell_lst,
+                    total,
+                    par[0] / macro_CPU_freq,
+                    par[1] / small_CPU_freq,
+                )
+                sum_FIFO += len(winning_FIFO_macro_cell)
+                sum_FIFO += len(winning_FIFO_small_cell)
             macro_cell_lst.sort(reverse=True)
-            small_cell_lst.sort(reverse=True)
+            for lst in small_cell_lst:
+                lst.sort(reverse=True)
             total.sort(reverse=True)
-            (
-                winning_macro_cell_first_macro_cell,
-                winning_macro_cell_first_small_cell,
-            ) = macro_cell_first(
-                macro_cell_lst,
-                small_cell_lst,
-                total,
-                par[0] / macro_CPU_freq,
-                par[1] / small_CPU_freq,
-            )
-            winning_greedy_macro_cell, winning_greedy_small_cell = Greedy(
-                macro_cell_lst,
-                small_cell_lst,
-                total,
-                par[0] / macro_CPU_freq,
-                par[1] / small_CPU_freq,
-            )
-            winning_No_small_cell_macro_cell = No_small_cell(
-                macro_cell_lst,
-                small_cell_lst,
-                total,
-                par[0] / macro_CPU_freq,
-                par[1] / small_CPU_freq,
-            )
-            winning_macro_cell, winning_small_cell = Proposed(
-                macro_cell_lst,
-                small_cell_lst,
-                total,
-                par[0] / macro_CPU_freq,
-                par[1] / small_CPU_freq,
-            )
-            sum_FIFO += len(winning_FIFO_macro_cell)
-            sum_FIFO += len(winning_FIFO_small_cell)
-            sum_greedy += len(winning_greedy_macro_cell)
-            sum_greedy += len(winning_greedy_small_cell)
-            sum_proposed += len(winning_macro_cell)
-            sum_proposed += len(winning_small_cell)
-            sum_macro_cell_first += len(winning_macro_cell_first_macro_cell)
-            sum_macro_cell_first += len(winning_macro_cell_first_small_cell)
-            sum_no_small_cell += len(winning_No_small_cell_macro_cell)
+            if MACRO_FIRST:
+                (
+                    winning_macro_cell_first_macro_cell,
+                    winning_macro_cell_first_small_cell,
+                ) = macro_cell_first(
+                    macro_cell_lst,
+                    small_cell_lst,
+                    total,
+                    par[0] / macro_CPU_freq,
+                    par[1] / small_CPU_freq,
+                )
+                sum_macro_cell_first += len(winning_macro_cell_first_macro_cell)
+                sum_macro_cell_first += len(winning_macro_cell_first_small_cell)
+            if GREEDY:
+                winning_greedy_macro_cell, winning_greedy_small_cell = Greedy(
+                    macro_cell_lst,
+                    small_cell_lst,
+                    total,
+                    par[0] / macro_CPU_freq,
+                    par[1] / small_CPU_freq,
+                )
+                sum_greedy += len(winning_greedy_macro_cell)
+                sum_greedy += len(winning_greedy_small_cell)
+            if NO_SMALL:
+                winning_No_small_cell_macro_cell = No_small_cell(
+                    macro_cell_lst,
+                    small_cell_lst,
+                    total,
+                    par[0] / macro_CPU_freq,
+                    par[1] / small_CPU_freq,
+                )
+                sum_no_small_cell += len(winning_No_small_cell_macro_cell)
+                
+            if PROPOSED:
+                winning_macro_cell, winning_small_cell = Proposed(
+                    macro_cell_lst,
+                    small_cell_lst,
+                    total,
+                    par[0] / macro_CPU_freq,
+                    par[1] / small_CPU_freq,
+                )
+                sum_proposed += len(winning_macro_cell)
+                sum_proposed += len(winning_small_cell)
+
+            
             if DEBUG:
                 if j == 0:
                     print(
