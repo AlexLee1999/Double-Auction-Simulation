@@ -109,8 +109,8 @@ def No_small_cell(macro_cell_lst, small_cell_lst, total, macro_cellt, small_cell
     macro_cell_lst = macro_cell_lst.copy()
     total = total.copy()
     winning_macro_cell = []
-    for i in range(len(total)):
+    for i in range(len(macro_cell_lst)):
         b = (len(winning_macro_cell) + 1) * macro_cellt + time_to_macro_cell
-        if b <= total[i].time:
-            winning_macro_cell.append(total[i])
+        if b <= macro_cell_lst[i].time:
+            winning_macro_cell.append(macro_cell_lst[i])
     return winning_macro_cell
