@@ -3,23 +3,6 @@ from Macro_Cell import *
 from Small_Cell import *
 
 
-def Generate_task():
-    macro_cell_lst = []
-    small_cell_lst = []
-    total = []
-    for _ in range(MACRO_CELL_USER):
-        a = macro_cell_user()
-        macro_cell_lst.append(a)
-        total.append(a)
-        
-    for i in range(SMALL_NUM):
-        small_cell_user_lst = []
-        for _ in range(SMALL_CELL_USER):
-            b = small_cell_user(i)
-            small_cell_user_lst.append(b)
-            total.append(b)
-        small_cell_lst.append(small_cell_user_lst)
-    return macro_cell_lst, small_cell_lst, total
 
 
 def Proposed(macro_cell_lst, small_cell_lst, total, macro_cellt, small_cellt):
@@ -47,7 +30,7 @@ def Greedy(macro_cell_lst, small_cell_lst, total, macro_cellt, small_cellt):
     winning_macro_cell = []
     winning_small_cell = []
     cell_count = []
-    for i in range(SMALL_NUM):
+    for i in range(len(small_cell_lst)):
         cell_count.append(0)
     macro_cell_lst = macro_cell_lst.copy()
     small_cell_lst = small_cell_lst.copy()
