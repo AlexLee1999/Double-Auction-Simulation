@@ -8,3 +8,6 @@ from System import *
 
 if __name__ == "__main__":
     cpu_cycles()
+    small_cells_nums()
+    transmission_time()
+    cell_capacity()

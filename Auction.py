@@ -5,7 +5,7 @@ from Small_Cell import *
 
 
 
-def Proposed(macro_cell_lst, small_cell_lst, total, macro_cellt, small_cellt):
+def Proposed(macro_cell_lst, small_cell_lst, total, macro_cellt, small_cellt, time_to_macro_cell, time_to_small_cell):
     macro_cell_lst = macro_cell_lst.copy()
     small_cell_lst = small_cell_lst.copy()
     total = total.copy()
@@ -26,7 +26,7 @@ def Proposed(macro_cell_lst, small_cell_lst, total, macro_cellt, small_cellt):
     return winning_macro_cell, winning_small_cell
 
 
-def Greedy(macro_cell_lst, small_cell_lst, total, macro_cellt, small_cellt):
+def Greedy(macro_cell_lst, small_cell_lst, total, macro_cellt, small_cellt, time_to_macro_cell, time_to_small_cell):
     winning_macro_cell = []
     winning_small_cell = []
     cell_count = []
@@ -50,7 +50,7 @@ def Greedy(macro_cell_lst, small_cell_lst, total, macro_cellt, small_cellt):
     return winning_macro_cell, winning_small_cell
 
 
-def Fifo(macro_cell_lst, small_cell_lst, total, macro_cellt, small_cellt):
+def Fifo(macro_cell_lst, small_cell_lst, total, macro_cellt, small_cellt, time_to_macro_cell, time_to_small_cell):
     winning_macro_cell = []
     winning_small_cell = []
     macro_cell_lst = macro_cell_lst.copy()
@@ -85,7 +85,7 @@ def Fifo(macro_cell_lst, small_cell_lst, total, macro_cellt, small_cellt):
     return winning_macro_cell, winning_small_cell
 
 
-def macro_cell_first(macro_cell_lst, small_cell_lst, total, macro_cellt, small_cellt):
+def macro_cell_first(macro_cell_lst, small_cell_lst, total, macro_cellt, small_cellt, time_to_macro_cell, time_to_small_cell):
     macro_cell_lst = macro_cell_lst.copy()
     small_cell_lst = small_cell_lst.copy()
     total = total.copy()
@@ -106,7 +106,7 @@ def macro_cell_first(macro_cell_lst, small_cell_lst, total, macro_cellt, small_c
     return winning_macro_cell, winning_small_cell
 
 
-def No_small_cell(macro_cell_lst, small_cell_lst, total, macro_cellt, small_cellt):
+def No_small_cell(macro_cell_lst, small_cell_lst, total, macro_cellt, small_cellt, time_to_macro_cell, time_to_small_cell):
     macro_cell_lst = macro_cell_lst.copy()
     total = total.copy()
     winning_macro_cell = []
