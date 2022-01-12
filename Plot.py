@@ -2,7 +2,7 @@ from Const import *
 from System import *
 from Auction import *
 import matplotlib.pyplot as plt
-
+from tqdm import tqdm
 
 def cpu_cycles():
     parameters = [[1e6, 1e6], [2e6, 2e6], [3e6, 3e6], [4e6, 4e6], [5e6, 5e6]]
@@ -18,7 +18,9 @@ def cpu_cycles():
         sum_FIFO = 0
         sum_macro_cell_first = 0
         sum_no_small_cell = 0
-        for j in range(ITER):
+        i = 0
+        pbar = tqdm(total=ITER)
+        while i < ITER:
             system = System(MACRO_CELL_USER_NUM,
                             SMALL_NUM, SMALL_CELL_USER_NUM)
             if FIFO:
@@ -92,7 +94,7 @@ def cpu_cycles():
                 sum_proposed += len(winning_small_cell)
 
             if DEBUG:
-                if j == 0:
+                if i == 0:
                     print(
                         "################################################################"
                     )
@@ -125,6 +127,8 @@ def cpu_cycles():
                     print(
                         "################################################################"
                     )
+            i += 1
+            pbar.update(1)
         print(par)
         print(f"Avg of task being allocate by FIFO : {sum_FIFO/ITER}")
         tasks_FIFO.append(sum_FIFO / ITER)
@@ -183,7 +187,9 @@ def small_cells_nums():
         sum_FIFO = 0
         sum_macro_cell_first = 0
         sum_no_small_cell = 0
-        for j in range(ITER):
+        i = 0
+        pbar = tqdm(total=ITER)
+        while i < ITER:
             system = System(MACRO_CELL_USER_NUM,
                             par, SMALL_CELL_USER_NUM)
             if FIFO:
@@ -257,7 +263,7 @@ def small_cells_nums():
                 sum_proposed += len(winning_small_cell)
 
             if DEBUG:
-                if j == 0:
+                if i == 0:
                     print(
                         "################################################################"
                     )
@@ -290,6 +296,8 @@ def small_cells_nums():
                     print(
                         "################################################################"
                     )
+            i += 1
+            pbar.update(1)
         print(par)
         print(f"Avg of task being allocate by FIFO : {sum_FIFO/ITER}")
         tasks_FIFO.append(sum_FIFO / ITER)
@@ -350,7 +358,9 @@ def transmission_time():
         sum_FIFO = 0
         sum_macro_cell_first = 0
         sum_no_small_cell = 0
-        for j in range(ITER):
+        i = 0
+        pbar = tqdm(total=ITER)
+        while i < ITER:
             system = System(MACRO_CELL_USER_NUM,
                             SMALL_NUM, SMALL_CELL_USER_NUM)
             if FIFO:
@@ -424,7 +434,7 @@ def transmission_time():
                 sum_proposed += len(winning_small_cell)
 
             if DEBUG:
-                if j == 0:
+                if i == 0:
                     print(
                         "################################################################"
                     )
@@ -457,6 +467,8 @@ def transmission_time():
                     print(
                         "################################################################"
                     )
+            i += 1
+            pbar.update(1)
         print(par)
         print(f"Avg of task being allocate by FIFO : {sum_FIFO/ITER}")
         tasks_FIFO.append(sum_FIFO / ITER)
@@ -514,7 +526,9 @@ def cell_capacity():
         sum_FIFO = 0
         sum_macro_cell_first = 0
         sum_no_small_cell = 0
-        for j in range(ITER):
+        i = 0
+        pbar = tqdm(total=ITER)
+        while i < ITER:
             system = System(MACRO_CELL_USER_NUM,
                             SMALL_NUM, SMALL_CELL_USER_NUM)
             if FIFO:
@@ -588,7 +602,7 @@ def cell_capacity():
                 sum_proposed += len(winning_small_cell)
 
             if DEBUG:
-                if j == 0:
+                if i == 0:
                     print(
                         "################################################################"
                     )
@@ -621,6 +635,8 @@ def cell_capacity():
                     print(
                         "################################################################"
                     )
+            i += 1
+            pbar.update(1)
         print(par)
         print(f"Avg of task being allocate by FIFO : {sum_FIFO/ITER}")
         tasks_FIFO.append(sum_FIFO / ITER)
