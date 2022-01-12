@@ -95,9 +95,6 @@ def cpu_cycles():
 
             if DEBUG:
                 if i == 0:
-                    print(
-                        "################################################################"
-                    )
                     print("First time Generated Tasks")
                     print(system.small_cell_lst)
                     print(system.macro_cell_lst)
@@ -124,9 +121,6 @@ def cpu_cycles():
                     print(
                         f"No small_cell : {len(winning_No_small_cell_macro_cell)}")
                     print(winning_No_small_cell_macro_cell)
-                    print(
-                        "################################################################"
-                    )
             i += 1
             pbar.update(1)
         if DEBUG:
@@ -171,7 +165,7 @@ def cpu_cycles():
         label="No Small Cell",
     )
     plt.legend(loc="best")
-    plt.savefig('./CPU_CYCLE_Result.jpg')
+    plt.savefig('./Pics/CPU_CYCLE_Result.pdf')
 
 
 def small_cells_nums():
@@ -265,9 +259,7 @@ def small_cells_nums():
 
             if DEBUG:
                 if i == 0:
-                    print(
-                        "################################################################"
-                    )
+                    
                     print("First time Generated Tasks")
                     print(system.small_cell_lst)
                     print(system.macro_cell_lst)
@@ -294,9 +286,7 @@ def small_cells_nums():
                     print(
                         f"No small_cell : {len(winning_No_small_cell_macro_cell)}")
                     print(winning_No_small_cell_macro_cell)
-                    print(
-                        "################################################################"
-                    )
+                    
             i += 1
             pbar.update(1)
         if DEBUG:
@@ -341,7 +331,7 @@ def small_cells_nums():
         label="No Small Cell",
     )
     plt.legend(loc="best")
-    plt.savefig('./SMALL_CELL_NUM_Result.jpg')
+    plt.savefig('./Pics/SMALL_CELL_NUM_Result.pdf')
 
 
 def transmission_time():
@@ -437,9 +427,7 @@ def transmission_time():
 
             if DEBUG:
                 if i == 0:
-                    print(
-                        "################################################################"
-                    )
+                    
                     print("First time Generated Tasks")
                     print(system.small_cell_lst)
                     print(system.macro_cell_lst)
@@ -466,9 +454,7 @@ def transmission_time():
                     print(
                         f"No small_cell : {len(winning_No_small_cell_macro_cell)}")
                     print(winning_No_small_cell_macro_cell)
-                    print(
-                        "################################################################"
-                    )
+                    
             i += 1
             pbar.update(1)
         if DEBUG:
@@ -513,11 +499,11 @@ def transmission_time():
         label="No Small Cell",
     )
     plt.legend(loc="best")
-    plt.savefig('./TRANSMISSION_Result.jpg')
+    plt.savefig('./Pics/TRANSMISSION_Result.pdf')
     
 def cell_capacity():
     parameters = [[5e8, 5e7], [7.5e8, 7.5e7], [1e9, 1e8], [2.5e9, 2.5e8], [5e9, 5e8]]
-    parameter = ["509MHz, 50MHz", "750MHz, 75MHz", "1GHz, 100MHz", "2.5GHz, 250MHz", "5Gz, 500MHz"]
+    parameter = ["500MHz, 50MHz", "750MHz, 75MHz", "1GHz, 100MHz", "2.5GHz, 250MHz", "5Gz, 500MHz"]
     tasks_greedy = []
     tasks_proposed = []
     tasks_FIFO = []
@@ -606,9 +592,6 @@ def cell_capacity():
 
             if DEBUG:
                 if i == 0:
-                    print(
-                        "################################################################"
-                    )
                     print("First time Generated Tasks")
                     print(system.small_cell_lst)
                     print(system.macro_cell_lst)
@@ -635,9 +618,6 @@ def cell_capacity():
                     print(
                         f"No small_cell : {len(winning_No_small_cell_macro_cell)}")
                     print(winning_No_small_cell_macro_cell)
-                    print(
-                        "################################################################"
-                    )
             i += 1
             pbar.update(1)
         if DEBUG:
@@ -682,4 +662,4 @@ def cell_capacity():
         label="No Small Cell",
     )
     plt.legend(loc="best")
-    plt.savefig('./CELL_CAPICITY_Result.jpg')
+    plt.savefig('./Pics/CELL_CAPICITY_Result.pdf')

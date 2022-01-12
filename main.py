@@ -7,11 +7,11 @@ from System import *
 
 
 if __name__ == "__main__":
-    print("CPU")
+    print("CPU\n")
     cpu_cycles()
-    print("Small Cell")
+    print("Small Cell\n")
     small_cells_nums()
-    print("Transmission")
+    print("Transmission\n")
     transmission_time()
-    print("Cell Capacity")
+    print("Cell Capacity\n")
     cell_capacity()
