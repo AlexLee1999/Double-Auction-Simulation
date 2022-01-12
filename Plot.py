@@ -129,22 +129,23 @@ def cpu_cycles():
                     )
             i += 1
             pbar.update(1)
-        print(par)
-        print(f"Avg of task being allocate by FIFO : {sum_FIFO/ITER}")
+        if DEBUG:
+            print(par)
+            print(f"Avg of task being allocate by FIFO : {sum_FIFO/ITER}")
+            print(
+                f"Avg of task being allocate by Proposed algorithm : {sum_proposed/ITER}")
+            print(
+                f"Avg of task being allocate by Greedy algorithm : {sum_greedy/ITER}")
+            print(
+                f"Avg of task being allocate by macro cell First algorithm : {sum_macro_cell_first/ITER}"
+            )
+            print(
+                f"Avg of task being allocate by No small cell algorithm : {sum_no_small_cell/ITER}"
+            )
         tasks_FIFO.append(sum_FIFO / ITER)
-        print(
-            f"Avg of task being allocate by Proposed algorithm : {sum_proposed/ITER}")
         tasks_proposed.append(sum_proposed / ITER)
-        print(
-            f"Avg of task being allocate by Greedy algorithm : {sum_greedy/ITER}")
         tasks_greedy.append(sum_greedy / ITER)
-        print(
-            f"Avg of task being allocate by macro cell First algorithm : {sum_macro_cell_first/ITER}"
-        )
         tasks_macro_cell_first.append(sum_macro_cell_first / ITER)
-        print(
-            f"Avg of task being allocate by No small cell algorithm : {sum_no_small_cell/ITER}"
-        )
         tasks_no_small_cell.append(sum_no_small_cell / ITER)
     plt.figure()
     plt.plot(
@@ -298,22 +299,23 @@ def small_cells_nums():
                     )
             i += 1
             pbar.update(1)
-        print(par)
-        print(f"Avg of task being allocate by FIFO : {sum_FIFO/ITER}")
+        if DEBUG:
+            print(par)
+            print(f"Avg of task being allocate by FIFO : {sum_FIFO/ITER}")
+            print(
+                f"Avg of task being allocate by Proposed algorithm : {sum_proposed/ITER}")
+            print(
+                f"Avg of task being allocate by Greedy algorithm : {sum_greedy/ITER}")
+            print(
+                f"Avg of task being allocate by macro cell First algorithm : {sum_macro_cell_first/ITER}"
+            )
+            print(
+                f"Avg of task being allocate by No small cell algorithm : {sum_no_small_cell/ITER}"
+            )
         tasks_FIFO.append(sum_FIFO / ITER)
-        print(
-            f"Avg of task being allocate by Proposed algorithm : {sum_proposed/ITER}")
         tasks_proposed.append(sum_proposed / ITER)
-        print(
-            f"Avg of task being allocate by Greedy algorithm : {sum_greedy/ITER}")
         tasks_greedy.append(sum_greedy / ITER)
-        print(
-            f"Avg of task being allocate by macro cell First algorithm : {sum_macro_cell_first/ITER}"
-        )
         tasks_macro_cell_first.append(sum_macro_cell_first / ITER)
-        print(
-            f"Avg of task being allocate by No small cell algorithm : {sum_no_small_cell/ITER}"
-        )
         tasks_no_small_cell.append(sum_no_small_cell / ITER)
     plt.figure()
     plt.plot(
@@ -469,22 +471,23 @@ def transmission_time():
                     )
             i += 1
             pbar.update(1)
-        print(par)
-        print(f"Avg of task being allocate by FIFO : {sum_FIFO/ITER}")
+        if DEBUG:
+            print(par)
+            print(f"Avg of task being allocate by FIFO : {sum_FIFO/ITER}")
+            print(
+                f"Avg of task being allocate by Proposed algorithm : {sum_proposed/ITER}")
+            print(
+                f"Avg of task being allocate by Greedy algorithm : {sum_greedy/ITER}")
+            print(
+                f"Avg of task being allocate by macro cell First algorithm : {sum_macro_cell_first/ITER}"
+            )
+            print(
+                f"Avg of task being allocate by No small cell algorithm : {sum_no_small_cell/ITER}"
+            )
         tasks_FIFO.append(sum_FIFO / ITER)
-        print(
-            f"Avg of task being allocate by Proposed algorithm : {sum_proposed/ITER}")
         tasks_proposed.append(sum_proposed / ITER)
-        print(
-            f"Avg of task being allocate by Greedy algorithm : {sum_greedy/ITER}")
         tasks_greedy.append(sum_greedy / ITER)
-        print(
-            f"Avg of task being allocate by macro cell First algorithm : {sum_macro_cell_first/ITER}"
-        )
         tasks_macro_cell_first.append(sum_macro_cell_first / ITER)
-        print(
-            f"Avg of task being allocate by No small cell algorithm : {sum_no_small_cell/ITER}"
-        )
         tasks_no_small_cell.append(sum_no_small_cell / ITER)
     plt.figure()
     plt.plot(
@@ -637,22 +640,23 @@ def cell_capacity():
                     )
             i += 1
             pbar.update(1)
-        print(par)
-        print(f"Avg of task being allocate by FIFO : {sum_FIFO/ITER}")
+        if DEBUG:
+            print(par)
+            print(f"Avg of task being allocate by FIFO : {sum_FIFO/ITER}")
+            print(
+                f"Avg of task being allocate by Proposed algorithm : {sum_proposed/ITER}")
+            print(
+                f"Avg of task being allocate by Greedy algorithm : {sum_greedy/ITER}")
+            print(
+                f"Avg of task being allocate by macro cell First algorithm : {sum_macro_cell_first/ITER}"
+            )
+            print(
+                f"Avg of task being allocate by No small cell algorithm : {sum_no_small_cell/ITER}"
+            )
         tasks_FIFO.append(sum_FIFO / ITER)
-        print(
-            f"Avg of task being allocate by Proposed algorithm : {sum_proposed/ITER}")
         tasks_proposed.append(sum_proposed / ITER)
-        print(
-            f"Avg of task being allocate by Greedy algorithm : {sum_greedy/ITER}")
         tasks_greedy.append(sum_greedy / ITER)
-        print(
-            f"Avg of task being allocate by macro cell First algorithm : {sum_macro_cell_first/ITER}"
-        )
         tasks_macro_cell_first.append(sum_macro_cell_first / ITER)
-        print(
-            f"Avg of task being allocate by No small cell algorithm : {sum_no_small_cell/ITER}"
-        )
         tasks_no_small_cell.append(sum_no_small_cell / ITER)
     plt.figure()
     plt.plot(
